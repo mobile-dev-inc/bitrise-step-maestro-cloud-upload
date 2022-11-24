@@ -89,7 +89,7 @@ inputs:
   - mapping_file: ""
     opts:
       title: "Mapping File"
-      summary: ""
+      summary: dSYM file (iOS) or Proguard mapping file (Android)
       description: |
         **Android**: Include the Proguard mapping file to deobfuscate Android performance traces.
         **iOS**: Include the generated .dSYM file (unique per build)
@@ -98,38 +98,38 @@ inputs:
   - workspace: ""
     opts:
       title: "Flow workspace"
-      summary: "Flow file or directory"
+      summary: Flow file or directory
       description: |
-        "By default, the action is looking for a .maestro folder with Maestro flows in the root directory of the project.
+        By default, the action is looking for a .maestro folder with Maestro flows in the root directory of the project.
          If you would like to customize this behaviour, you can override it with a workspace argument"
       is_expand: true
       is_required: false
   - upload_name: ""
     opts:
       title: "Upload Name"
-      summary: "Custom upload name"
+      summary: Custom upload name
       description: |
         "A name will automatically be provided according to the following order:
           - If it is a Pull Request, use Pull Request title as name
           - If it is a normal push, use commit message as name
           - If for some reason the commit message is not available, use the commit SHA as name
-          - If you want to override this behaviour and specify your own name, you can do so by setting the name argument"
+          - If you want to override this behaviour and specify your own name, you can do so by setting the name argument
       is_expand: false
       is_required: false
   - async: false
     opts:
-      title: "Async Mode"
-      summary: "Run in async mode"
+      title: Async Mode
+      summary: Run in async mode
       description: |
-        "If you don't want the action to wait until the Upload has been completed as is the default behaviour, set the async argument to true"
+        If you don't want the action to wait until the Upload has been completed as is the default behaviour, set the async argument to true
       is_expand: false
       is_required: false
   - env: ""
     opts:
       title: "Environment variables"
-      summary: "Pass environment variables to your flows"
+      summary: Pass environment variables to your flows
       description: |
-        "If you want to pass environment variables along with your upload, add variables separated by a new line or **\n**.
-        i.e VAR1=1\nVAR2=2 ..."
+        If you want to pass environment variables along with your upload, add variables separated by a new line or **\n**.
+        i.e VAR1=1\nVAR2=2 ...
       is_expand: true
       is_required: false
