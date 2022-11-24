@@ -154,7 +154,7 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
-  - pull_request_id: ""
+  - pull_request_id: $BITRISE_PULL_REQUEST
     opts:
       title: "Pull request id"
       summary: "The ID of the pull request this upload originated from"
