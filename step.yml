@@ -8,7 +8,7 @@
 # - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
 
 title: |-
-  maestro-cloud-upload
+  Upload to Maestro Cloud
 summary: |
   Upload your app binary to Maestro Cloud and run your flows
 description: |
