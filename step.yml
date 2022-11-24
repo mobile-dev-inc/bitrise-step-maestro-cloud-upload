@@ -104,7 +104,7 @@ inputs:
          If you would like to customize this behaviour, you can override it with a workspace argument"
       is_expand: true
       is_required: false
-  - upload_name: ""
+  - upload_name: $BITRISE_GIT_MESSAGE
     opts:
       title: "Upload Name"
       summary: Custom upload name
@@ -133,3 +133,33 @@ inputs:
         i.e VAR1=1\nVAR2=2 ...
       is_expand: true
       is_required: false
+  - branch: $BITRISE_GIT_BRANCH
+      opts:
+        title: "Build branch"
+        summary: "The branch this upload originated from"
+        description: ""
+        is_expand: true
+        is_required: false
+  - repoName: $BITRISEIO_GIT_REPOSITORY_SLUG
+      opts:
+        title: "Repository name"
+        summary: "Repository name (ie: GitHub repo slug)"
+        description: ""
+        is_expand: true
+        is_required: false
+  - repoOwner: $BITRISEIO_GIT_REPOSITORY_OWNER
+      opts:
+        title: "Repository owner"
+        summary: "Repository owner (ie: GitHub organization or user slug)"
+        description: ""
+        is_expand: true
+        is_required: false
+  - pullRequestId: ""
+      opts:
+        title: "Pull request id"
+        summary: "The ID of the pull request this upload originated from"
+        description: ""
+        is_expand: true
+        is_required: false
+
+
