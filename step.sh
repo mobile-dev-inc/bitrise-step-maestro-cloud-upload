@@ -23,11 +23,11 @@ export PATH="$PATH":"$HOME/.maestro/bin"
 maestro cloud \
 --apiKey $api_key \
 ${branch:+--branch "$branch"} \
-${repoName:+--repoName "$repoName"} \
-${repoOwner:+--repoOwner "$repoOwner"} \
+${repo_name:+--repoName "$repo_name"} \
+${repo_owner:+--repoOwner "$repo_owner"} \
 ${mapping_file:+--mapping "$mapping_file"} \
 ${upload_name:+--name "$upload_name"} \
 ${is_async:+--async} \
-${pullRequestId:+--pullRequestId "$pullRequestId"} \
+${pull_request_id:+--pullRequestId "$pull_request_id"} \
 ${env_list:+ $env_list} \
 $app_file $workspace

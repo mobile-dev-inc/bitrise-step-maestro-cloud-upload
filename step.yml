@@ -140,21 +140,21 @@ inputs:
         description: ""
         is_expand: true
         is_required: false
-  - repoName: $BITRISEIO_GIT_REPOSITORY_SLUG
+  - repo_name: $BITRISEIO_GIT_REPOSITORY_SLUG
       opts:
         title: "Repository name"
         summary: "Repository name (ie: GitHub repo slug)"
         description: ""
         is_expand: true
         is_required: false
-  - repoOwner: $BITRISEIO_GIT_REPOSITORY_OWNER
+  - repo_owner: $BITRISEIO_GIT_REPOSITORY_OWNER
       opts:
         title: "Repository owner"
         summary: "Repository owner (ie: GitHub organization or user slug)"
         description: ""
         is_expand: true
         is_required: false
-  - pullRequestId: ""
+  - pull_request_id: ""
       opts:
         title: "Pull request id"
         summary: "The ID of the pull request this upload originated from"
