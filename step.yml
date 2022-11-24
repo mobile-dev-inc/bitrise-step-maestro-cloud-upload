@@ -1,0 +1,135 @@
+#
+# A couple of useful guides & docs:
+#
+# - Main Bitrise CLI docs: https://github.com/bitrise-io/bitrise/tree/master/_docs
+# - Step Development Guideline: https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+# - Bitrise.yml format spec: https://github.com/bitrise-io/bitrise/blob/master/_docs/bitrise-yml-format-spec.md
+# - Bitrise docs: http://devcenter.bitrise.io/
+# - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
+
+title: |-
+  maestro-cloud-upload
+summary: |
+  Upload your app binary to Maestro Cloud and run your flows
+description: |
+  This steps uploads both your app binary and flows to Maestro Cloud.
+website: https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload
+source_code_url: https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload
+support_url: https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload/issues
+host_os_tags:
+  - osx-10.10
+  - ubuntu-16.04
+
+# If this step should be available only for certain project types
+# just uncomment this `project_type_tags` section and include all the
+# project types supported by the step. If the step can be used for all
+# project types then you can just remove this section.
+# If no `project_type_tags` specified (or specified as an empty array)
+# that means the step can be used for any project type.
+# You can find more information about project type tags in the Step Development Guideline:
+# https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+#
+project_type_tags:
+  - ios
+  - android
+  - xamarin
+  - react-native
+  - cordova
+  - ionic
+  - flutter
+
+# Type tags are used for categorizing steps, for easier step discovery in Step Libraries.
+# You can find more information about type tags in the Step Development Guideline:
+# https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+type_tags:
+  - test
+
+# These properties define whether a Step is run in a given Workflow or not.
+# You can find more information about this in the documentation here:
+# https://devcenter.bitrise.io/en/steps-and-workflows/developing-your-own-bitrise-step/developing-a-new-step.html#setting-conditions-for-running-the-step
+#
+is_always_run: false
+is_skippable: false
+run_if: ""
+
+# Use the `deps` property to declare dependencies that you can fetch from an OS dependency manager.
+# You can find more information about this in the documentation here:
+# https://devcenter.bitrise.io/en/steps-and-workflows/developing-your-own-bitrise-step/developing-a-new-step.html#submodules-and-step-dependencies
+#
+deps:
+  brew:
+    - name: git
+    - name: wget
+  apt_get:
+    - name: git
+    - name: wget
+
+toolkit:
+  bash:
+    entry_file: step.sh
+
+inputs:
+  - api_key: ""
+    opts:
+      title: "API Key"
+      summary: Maestro Cloud API key
+      description: |
+        Maestro Cloud API key
+      is_expand: true
+      is_required: true
+      is_sensitive: true
+  - app_file: ""
+    opts:
+      title: "App File"
+      summary: "App binary to run your Flows against"
+      description: |
+        **Android**: `app_file` should point to an x86 compatible APK file. **iOS**: `app_file` should point to an x86 compatible Simulator build packaged in a zip archive.
+      is_expand: true
+      is_required: true
+  - mapping_file: ""
+    opts:
+      title: "Mapping File"
+      summary: ""
+      description: |
+        **Android**: Include the Proguard mapping file to deobfuscate Android performance traces.
+        **iOS**: Include the generated .dSYM file (unique per build)
+      is_expand: true
+      is_required: false
+  - workspace: ""
+    opts:
+      title: "Flow workspace"
+      summary: "Flow file or directory"
+      description: |
+        "By default, the action is looking for a .maestro folder with Maestro flows in the root directory of the project.
+         If you would like to customize this behaviour, you can override it with a workspace argument"
+      is_expand: true
+      is_required: false
+  - upload_name: ""
+    opts:
+      title: "Upload Name"
+      summary: "Custom upload name"
+      description: |
+        "A name will automatically be provided according to the following order:
+          - If it is a Pull Request, use Pull Request title as name
+          - If it is a normal push, use commit message as name
+          - If for some reason the commit message is not available, use the commit SHA as name
+          - If you want to override this behaviour and specify your own name, you can do so by setting the name argument"
+      is_expand: false
+      is_required: false
+  - async: false
+    opts:
+      title: "Async Mode"
+      summary: "Run in async mode"
+      description: |
+        "If you don't want the action to wait until the Upload has been completed as is the default behaviour, set the async argument to true"
+      is_expand: false
+      is_required: false
+  - env: ""
+    opts:
+      title: "Environment variables"
+      summary: "Pass environment variables to your flows"
+      description: |
+        "If you want to pass environment variables along with your upload, add variables separated by **\n**.
+        i.e VAR1=1\n\nVAR2=2 ..."
+      is_expand: true
+      is_required: false
