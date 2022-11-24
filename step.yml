@@ -129,7 +129,7 @@ inputs:
       title: "Environment variables"
       summary: "Pass environment variables to your flows"
       description: |
-        "If you want to pass environment variables along with your upload, add variables separated by **\n**.
-        i.e VAR1=1\n\nVAR2=2 ..."
+        "If you want to pass environment variables along with your upload, add variables separated by a new line or **\n**.
+        i.e VAR1=1\nVAR2=2 ..."
       is_expand: true
       is_required: false
