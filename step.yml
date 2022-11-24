@@ -134,32 +134,32 @@ inputs:
       is_expand: true
       is_required: false
   - branch: $BITRISE_GIT_BRANCH
-      opts:
-        title: "Build branch"
-        summary: "The branch this upload originated from"
-        description: ""
-        is_expand: true
-        is_required: false
+    opts:
+      title: "Build branch"
+      summary: "The branch this upload originated from"
+      description: ""
+      is_expand: true
+      is_required: false
   - repo_name: $BITRISEIO_GIT_REPOSITORY_SLUG
-      opts:
-        title: "Repository name"
-        summary: "Repository name (ie: GitHub repo slug)"
-        description: ""
-        is_expand: true
-        is_required: false
+    opts:
+      title: "Repository name"
+      summary: "Repository name (ie: GitHub repo slug)"
+      description: ""
+      is_expand: true
+      is_required: false
   - repo_owner: $BITRISEIO_GIT_REPOSITORY_OWNER
-      opts:
-        title: "Repository owner"
-        summary: "Repository owner (ie: GitHub organization or user slug)"
-        description: ""
-        is_expand: true
-        is_required: false
+    opts:
+      title: "Repository owner"
+      summary: "Repository owner (ie: GitHub organization or user slug)"
+      description: ""
+      is_expand: true
+      is_required: false
   - pull_request_id: ""
-      opts:
-        title: "Pull request id"
-        summary: "The ID of the pull request this upload originated from"
-        description: ""
-        is_expand: true
-        is_required: false
+    opts:
+      title: "Pull request id"
+      summary: "The ID of the pull request this upload originated from"
+      description: ""
+      is_expand: true
+      is_required: false
 
 
