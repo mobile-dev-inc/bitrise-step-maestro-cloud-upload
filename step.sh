@@ -29,5 +29,6 @@ ${mapping_file:+--mapping "$mapping_file"} \
 ${upload_name:+--name "$upload_name"} \
 ${is_async:+--async} \
 ${pull_request_id:+--pullRequestId "$pull_request_id"} \
+${android_api_level:+--android-api-level "$android_api_level"} \
 ${env_list:+ $env_list} \
 $app_file $workspace

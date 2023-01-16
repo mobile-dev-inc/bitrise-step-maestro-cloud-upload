@@ -133,6 +133,13 @@ inputs:
         i.e VAR1=1\nVAR2=2 ...
       is_expand: true
       is_required: false
+  - android_api_level: ""
+    opts:
+      title: "Android api level"
+      summary: "Set the Android api level the devices should run (Default: 30)"
+      description: ""
+      is_expand: true
+      is_required: false
   - branch: $BITRISE_GIT_BRANCH
     opts:
       title: "Build branch"
@@ -161,5 +168,3 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
-
-
