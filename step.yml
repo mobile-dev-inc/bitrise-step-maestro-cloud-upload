@@ -168,3 +168,10 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
+  - maestro_cli_version: ""
+    opts:
+      title: "Maestro CLI version"
+      summary: "Maestro CLI version to be downloaded in your CI (Default: latest)"
+      description: ""
+      is_expand: true
+      is_required: false

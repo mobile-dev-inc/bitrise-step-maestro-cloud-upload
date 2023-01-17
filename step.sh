@@ -16,6 +16,17 @@ set -ex
 
 cd $BITRISE_SOURCE_DIR
 
+# Metadata
+export MDEV_CI="Bitrise"
+
+# Maestro version
+if [ -z "$maestro_cli_version" ]; then
+    echo "Maestro CLI version not specified, using latest"
+else
+    echo "Maestro CLI version: $maestro_cli_version"
+    export MAESTRO_VERSION=$maestro_cli_version;
+fi
+
 # Install maestro CLI
 curl -Ls "https://get.maestro.mobile.dev" | bash
 export PATH="$PATH":"$HOME/.maestro/bin"
