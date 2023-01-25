@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Metadata
+export MDEV_CI="bitrise"
+
 # Parse env variables
 envs=$(echo $env | tr "\n" "\n")
 env_list=""
@@ -15,9 +18,6 @@ set -ex
 [ "$async" == "true" ] && is_async="true"
 
 cd $BITRISE_SOURCE_DIR
-
-# Metadata
-export MDEV_CI="Bitrise"
 
 # Maestro version
 if [ -z "$maestro_cli_version" ]; then
@@ -41,5 +41,7 @@ ${upload_name:+--name "$upload_name"} \
 ${is_async:+--async} \
 ${pull_request_id:+--pullRequestId "$pull_request_id"} \
 ${android_api_level:+--android-api-level "$android_api_level"} \
+${include_tags:+--include-tags "$include_tags"} \
+${exclude_tags:+--exclude-tags "$exclude_tags"} \
 ${env_list:+ $env_list} \
 $app_file $workspace

@@ -140,6 +140,20 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
+  - include_tags: ""
+    opts:
+      title: "Include tags"
+      summary: "Run only the flows that contain the specified tags (comma separated) i.e dev,pull-request"
+      description: ""
+      is_expand: true
+      is_required: false
+  - exclude_tags: ""
+    opts:
+      title: "Exclude tags"
+      summary: "Run every flow, except the ones with specified tags (comma separated) i.e pull-request,experimental"
+      description: ""
+      is_expand: true
+      is_required: false
   - branch: $BITRISE_GIT_BRANCH
     opts:
       title: "Build branch"
