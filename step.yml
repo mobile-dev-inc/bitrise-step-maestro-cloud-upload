@@ -85,15 +85,6 @@ inputs:
         **Android**: `app_file` should point to an x86 compatible APK file. **iOS**: `app_file` should point to an x86 compatible Simulator build packaged in a zip archive.
       is_expand: true
       is_required: true
-  - mapping_file: ""
-    opts:
-      title: "Mapping File"
-      summary: dSYM file (iOS) or Proguard mapping file (Android)
-      description: |
-        **Android**: Include the Proguard mapping file to deobfuscate Android performance traces.
-        **iOS**: Include the generated .dSYM file (unique per build)
-      is_expand: true
-      is_required: false
   - workspace: ""
     opts:
       title: "Flow workspace"
@@ -167,6 +158,15 @@ inputs:
       title: "Export test output"
       summary: "Export test file output (Default: report.xml)"
       description: ""
+      is_expand: true
+      is_required: false
+  - mapping_file: ""
+    opts:
+      title: "Mapping File"
+      summary: dSYM file (iOS) or Proguard mapping file (Android)
+      description: |
+        **Android**: Include the Proguard mapping file to deobfuscate Android performance traces.
+        **iOS**: Include the generated .dSYM file (unique per build)
       is_expand: true
       is_required: false
   - branch: $BITRISE_GIT_BRANCH
