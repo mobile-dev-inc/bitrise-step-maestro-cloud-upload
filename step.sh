@@ -14,7 +14,6 @@ done
 # Refine variables
 [[ "$async" == "true" ]] && is_async="true"
 [[ "$export_format" == "true" ]] && is_export="true"
-[[ "$is_export" == "true" && -n "$export_output" ]] && export_file="$export_output"
 
 # Test report file
 if [[ "$is_export" == "true" ]]; then
