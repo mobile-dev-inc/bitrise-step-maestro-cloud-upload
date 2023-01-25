@@ -150,8 +150,17 @@ inputs:
   - exclude_tags: ""
     opts:
       title: "Exclude tags"
-      summary: "Run every flow, except the ones with specified tags (comma separated) i.e pull-request,experimental"
+      summary: "Exclude flows from running with the specified tags (comma separated) i.e pull-request,experimental"
       description: ""
+      is_expand: true
+      is_required: false
+  - format: ""
+    opts:
+      title: "Test report"
+      summary: "Generate test suite report"
+      description: ""
+      value_options:
+        - "junit"
       is_expand: true
       is_required: false
   - branch: $BITRISE_GIT_BRANCH
