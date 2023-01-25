@@ -11,14 +11,21 @@ do
     env_list+="-e $e "
 done
 
-
-set -ex
-
 # Refine variables
 [[ "$async" == "true" ]] && is_async="true"
 [[ "$export_format" == "true" ]] && is_export="true"
 [[ "$is_export" == "true" && -n "$export_output" ]] && export_file="$export_output"
 
+# Test report file
+if [[ "$is_export" == "true" ]]; then
+    if [[ -z "$export_output" ]]; then
+        export_file="report.xml"
+    fi
+fi
+
+set -ex
+
+# Change to source directory
 cd $BITRISE_SOURCE_DIR
 
 # Maestro version
@@ -32,9 +39,6 @@ fi
 # Install maestro CLI
 curl -Ls "https://get.maestro.mobile.dev" | bash
 export PATH="$PATH":"$HOME/.maestro/bin"
-
-ls -a $BITRISE_SOURCE_DIR
-ls -a $BITRISE_SOURCE_DIR/android/
 
 # Run Maestro Cloud
 EXIT_CODE=0
@@ -57,11 +61,11 @@ ${env_list:+ $env_list} \
 $app_file $workspace || EXIT_CODE=$?
 
 # Export test results
-if [[ "$is_export" == "true" ]]; then
-    test_run_dir="$BITRISE_TEST_RESULT_DIR/maestro_test_output"
+if [[ -n "$export_file" && -f "$export_file"]]; then
+    test_run_dir="$BITRISE_TEST_RESULT_DIR/maestro"
     mkdir "$test_run_dir"
     cp "$export_file" "$test_run_dir/maestro_report.xml"
-    echo '{"maestro-cloud-flows":"Maestro Cloud Flows"}' >> "$test_run_dir/test-info.json"
+    echo '{"maestro-test-report":"Maestro Cloud Flows"}' >> "$test_run_dir/test-info.json"
 fi
 
 exit $EXIT_CODE
