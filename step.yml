@@ -67,7 +67,6 @@ deps:
 toolkit:
   bash:
     entry_file: step.sh
-
 inputs:
   - api_key: ""
     opts:
@@ -162,6 +161,13 @@ inputs:
       value_options:
         - "true"
         - "false"
+      is_required: false
+  - export_output: ""
+    opts:
+      title: "Export test output"
+      summary: "Export test file output (Default: report.xml)"
+      description: ""
+      is_expand: true
       is_required: false
   - branch: $BITRISE_GIT_BRANCH
     opts:
