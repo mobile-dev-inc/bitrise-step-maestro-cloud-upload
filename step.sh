@@ -33,8 +33,8 @@ fi
 curl -Ls "https://get.maestro.mobile.dev" | bash
 export PATH="$PATH":"$HOME/.maestro/bin"
 
-ls $BITRISE_SOURCE_DIR
-ls $BITRISE_SOURCE_DIR/android/
+ls -a $BITRISE_SOURCE_DIR
+ls -a $BITRISE_SOURCE_DIR/android/
 
 # Run Maestro Cloud
 maestro cloud \
