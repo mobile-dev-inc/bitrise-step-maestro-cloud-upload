@@ -143,7 +143,7 @@ inputs:
   - include_tags: ""
     opts:
       title: "Include tags"
-      summary: "Run only the flows that contain the specified tags (comma separated) i.e dev,pull-request"
+      summary: "Run only flows that contain the specified tags (comma separated) i.e dev,pull-request"
       description: ""
       is_expand: true
       is_required: false
@@ -154,14 +154,14 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
-  - format: ""
+  - export_format: "false"
     opts:
-      title: "Test report"
-      summary: "Generate test suite report"
+      title: "Export test report (JUnit)"
+      summary: "Generate test suite report (JUnit)"
       description: ""
       value_options:
-        - "junit"
-      is_expand: true
+        - "true"
+        - "false"
       is_required: false
   - branch: $BITRISE_GIT_BRANCH
     opts:

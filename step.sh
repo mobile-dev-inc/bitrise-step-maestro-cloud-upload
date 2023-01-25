@@ -16,6 +16,7 @@ set -ex
 
 # Async
 [ "$async" == "true" ] && is_async="true"
+[ "$export_format" == "true" ] && is_export="true"
 
 cd $BITRISE_SOURCE_DIR
 
@@ -43,5 +44,6 @@ ${pull_request_id:+--pullRequestId "$pull_request_id"} \
 ${android_api_level:+--android-api-level "$android_api_level"} \
 ${include_tags:+--include-tags "$include_tags"} \
 ${exclude_tags:+--exclude-tags "$exclude_tags"} \
+${is_export:+--format "junit"} \
 ${env_list:+ $env_list} \
 $app_file $workspace
