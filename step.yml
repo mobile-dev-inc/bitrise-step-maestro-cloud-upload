@@ -85,7 +85,7 @@ inputs:
         **Android**: `app_file` should point to an x86 compatible APK file. **iOS**: `app_file` should point to an x86 compatible Simulator build packaged in a zip archive.
       is_expand: true
       is_required: true
-  - workspace: ""
+  - workspace: ".maestro"
     opts:
       title: "Flow workspace"
       summary: Flow file or directory
