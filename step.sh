@@ -36,6 +36,14 @@ export PATH="$PATH":"$HOME/.maestro/bin"
 ls -a $BITRISE_SOURCE_DIR
 ls -a $BITRISE_SOURCE_DIR/android/
 
+# Export test results
+if [[ "$is_export" == "true" ]]; then
+    test_run_dir="$BITRISE_TEST_RESULT_DIR/maestro_test_output"
+    mkdir "$test_run_dir"
+    cp "$export_file" "$test_run_dir/maestro_report.xml"
+    echo '{"maestro-cloud-flows":"Maestro Cloud Flows"}' >> "$test_run_dir/test-info.json"
+fi
+
 # Run Maestro Cloud
 maestro cloud \
 --apiKey $api_key \
@@ -53,11 +61,3 @@ ${is_export:+--format "junit"} \
 ${export_file:+--output "$export_file"} \
 ${env_list:+ $env_list} \
 $app_file $workspace
-
-# Export test results
-if [[ "$is_export" == "true" ]]; then
-    test_run_dir="$BITRISE_TEST_RESULT_DIR/maestro_test_output"
-    mkdir "$test_run_dir"
-    cp "$export_file" "$test_run_dir/maestro_report.xml"
-    echo '{"maestro-cloud-flows":"Maestro Cloud Flows"}' >> "$test_run_dir/test-info.json"
-fi
