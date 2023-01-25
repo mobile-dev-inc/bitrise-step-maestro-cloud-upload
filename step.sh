@@ -61,7 +61,7 @@ ${env_list:+ $env_list} \
 $app_file $workspace || EXIT_CODE=$?
 
 # Export test results
-if [[ -n "$export_file" && -f "$export_file"]]; then
+if [[ -n "$export_file" && -f "$export_file" ]]; then
     test_run_dir="$BITRISE_TEST_RESULT_DIR/maestro"
     mkdir "$test_run_dir"
     cp "$export_file" "$test_run_dir/maestro_report.xml"
