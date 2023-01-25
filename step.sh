@@ -15,14 +15,14 @@ done
 set -ex
 
 # Refine variables
-[ "$async" == "true" ] && is_async="true"
-[ "$export_format" == "true" ] && is_export="true"
-[ "$is_export" == "true" && -n "$export_output" ] && export_file="$export_output"
+[[ "$async" == "true" ]] && is_async="true"
+[[ "$export_format" == "true" ]] && is_export="true"
+[[ "$is_export" == "true" && -n "$export_output" ]] && export_file="$export_output"
 
 cd $BITRISE_SOURCE_DIR
 
 # Maestro version
-if [ -z "$maestro_cli_version" ]; then
+if [[ -z "$maestro_cli_version" ]]; then
     echo "Maestro CLI version not specified, using latest"
 else
     echo "Maestro CLI version: $maestro_cli_version"
@@ -33,6 +33,7 @@ fi
 curl -Ls "https://get.maestro.mobile.dev" | bash
 export PATH="$PATH":"$HOME/.maestro/bin"
 
+# Run Maestro Cloud
 maestro cloud \
 --apiKey $api_key \
 ${branch:+--branch "$branch"} \
@@ -49,3 +50,11 @@ ${is_export:+--format "junit"} \
 ${export_file:+--output "$export_file"} \
 ${env_list:+ $env_list} \
 $app_file $workspace
+
+# Export test results
+if [[ "$is_export" == "true" ]]; then
+    test_run_dir="$BITRISE_TEST_RESULT_DIR/maestro_test_output"
+    mkdir "$test_run_dir"
+    cp "$export_file" "$test_run_dir/maestro_report.xml"
+    echo '{"maestro-cloud-flows":"Maestro Cloud Flows"}' >> "$test_run_dir/test-info.json"
+fi
