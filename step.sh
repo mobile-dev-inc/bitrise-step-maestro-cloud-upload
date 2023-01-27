@@ -13,7 +13,7 @@ done
 
 # Refine variables
 [[ "$async" == "true" ]] && is_async="true"
-[[ "$export_format" == "true" ]] && is_export="true"
+[[ "$export_test_report" == "true" ]] && is_export="true"
 
 # Test report file
 if [[ "$is_export" == "true" ]]; then

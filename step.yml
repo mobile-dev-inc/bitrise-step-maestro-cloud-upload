@@ -144,7 +144,7 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
-  - export_format: "false"
+  - export_test_report: "false"
     opts:
       title: "Export test report (JUnit)"
       summary: "Generate test suite report (JUnit)"
