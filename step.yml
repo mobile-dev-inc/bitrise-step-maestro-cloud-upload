@@ -126,7 +126,14 @@ inputs:
   - android_api_level: ""
     opts:
       title: "Android api level"
-      summary: "Set the Android api level the devices should run (Default: 30)"
+      summary: "Set the Android api level the devices should run on (Default: 30)"
+      description: ""
+      is_expand: true
+      is_required: false
+  - ios_version: ""
+    opts:
+      title: "Android api level"
+      summary: "Set the iOS version the devices should run on (Default: 15)"
       description: ""
       is_expand: true
       is_required: false
