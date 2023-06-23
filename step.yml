@@ -132,7 +132,7 @@ inputs:
       is_required: false
   - ios_version: ""
     opts:
-      title: "Android api level"
+      title: "iOS version"
       summary: "Set the iOS version the devices should run on (Default: 15)"
       description: ""
       is_expand: true
