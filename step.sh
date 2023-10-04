@@ -3,8 +3,6 @@
 # Metadata
 export MDEV_CI="bitrise"
 
-echo $env
-
 # Parse env variables
 env_list=""
 if [ -n "$env" ]; then
