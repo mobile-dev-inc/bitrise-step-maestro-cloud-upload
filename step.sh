@@ -3,13 +3,16 @@
 # Metadata
 export MDEV_CI="bitrise"
 
+echo $env
+
 # Parse env variables
-envs=$(echo $env | tr "\n" "\n")
 env_list=""
-for e in $envs
-do
-    env_list+="-e $e "
-done
+if [ -n "$env" ]; then
+    # Replace '\n' with ' -e '
+    envs="${env//\\n/ -e }"
+    # Prefix the whole string with '-e '
+    env_list="-e $envs"
+fi
 
 # Refine variables
 [[ "$async" == "true" ]] && is_async="true"
