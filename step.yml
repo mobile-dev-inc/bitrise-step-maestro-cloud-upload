@@ -137,6 +137,13 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
+  - device_locale: ""
+    opts:
+      title: "Device locale"
+      summary: "Set the device locale (Default: en_US)"
+      description: "A combination of lowercase ISO-639-1 code and uppercase ISO-3166-1 code should be used, i.e. de_DE for Germany."
+      is_expand: true
+      is_required: false
   - include_tags: ""
     opts:
       title: "Include tags"
