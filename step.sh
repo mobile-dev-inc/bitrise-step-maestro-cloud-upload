@@ -54,6 +54,7 @@ ${is_async:+--async} \
 ${pull_request_id:+--pullRequestId "$pull_request_id"} \
 ${android_api_level:+--android-api-level "$android_api_level"} \
 ${ios_version:+--ios-version "$ios_version"} \
+${device_locale:+--device-locale "$device_locale"} \
 ${include_tags:+--include-tags "$include_tags"} \
 ${exclude_tags:+--exclude-tags "$exclude_tags"} \
 ${is_export:+--format "junit"} \
