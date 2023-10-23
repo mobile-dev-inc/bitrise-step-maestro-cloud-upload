@@ -37,7 +37,7 @@ else
 fi
 
 # Install maestro CLI
-curl -Ls "https://get.maestro.mobile.dev" | bash
+curl --retry 5 --retry-all-errors -Ls "https://get.maestro.mobile.dev" | bash
 export PATH="$PATH":"$HOME/.maestro/bin"
 
 # Run Maestro Cloud
