@@ -38,44 +38,21 @@ fi
 
 # Get the version of curl
 curl_version=$(curl --version | head -n 1 | awk '{print $2}')
+echo "Current curl version: $curl_version"
 
-# Function to compare versions
-version_compare() {
-    if [[ $1 == $2 ]]; then
-        return 0
-    fi
-    local IFS=.
-    local i ver1=($1) ver2=($2)
-    # Fill empty fields in ver1 with zeros
-    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++)); do
-        ver1[i]=0
-    done
-    for ((i=0; i<${#ver1[@]}; i++)); do
-        if [[ -z ${ver2[i]} ]]; then
-            # Fill empty fields in ver2 with zeros
-            ver2[i]=0
-        fi
-        if ((10#${ver1[i]} < 10#${ver2[i]})); then
-            return 1
-        fi
-        if ((10#${ver1[i]} > 10#${ver2[i]})); then
-            return 2
-        fi
-    done
-    return 0
-}
+required_version="7.71.0"
 
-# Install maestro CLI
-version_compare "$curl_version" "7.71.0"
-if [[ $? -eq 2 ]]; then
+# Compare versions
+if [ "$(printf '%s\n' "$required_version" "$curl_version" | sort -V | head -n1)" = "$required_version" ]; then
+    # If the version of curl is greater than or equal to 7.71.0, execute with --retry-all-errors
     echo "version is higher or equal 7.71.0"
-    # If the version of curl is greater than 7.71.0, execute with --retry-all-errors
     curl --retry 5 --retry-all-errors -Ls "https://get.maestro.mobile.dev" | bash
 else
+    # If the version of curl is less than 7.71.0, execute without --retry-all-errors
     echo "version is lower than 7.71.0"
-    # If the version of curl is less than or equal to 7.71.0, execute without --retry-all-errors
     curl --retry 5 -Ls "https://get.maestro.mobile.dev" | bash
 fi
+
 export PATH="$PATH":"$HOME/.maestro/bin"
 
 # Run Maestro Cloud
