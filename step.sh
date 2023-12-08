@@ -75,6 +75,7 @@ ${exclude_tags:+--exclude-tags "$exclude_tags"} \
 ${is_export:+--format "junit"} \
 ${export_file:+--output "$export_file"} \
 ${env_list:+ $env_list} \
+${timeout:+--timeout "$timeout"} \
 $app_file $workspace || EXIT_CODE=$?
 
 # Export test results
