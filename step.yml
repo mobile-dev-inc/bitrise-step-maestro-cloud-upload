@@ -218,3 +218,10 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
+  - timeout: ""
+    opts:
+      title: Timeout
+      summary: Minutes to timeout while waiting for results
+      description: ""
+      is_expand: true
+      is_required: false
