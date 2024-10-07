@@ -71,9 +71,9 @@ inputs:
   - api_key: ""
     opts:
       title: "API Key"
-      summary: Maestro Cloud API key
+      summary: Maestro Cloud / Robin API key
       description: |
-        Maestro Cloud API key
+        Maestro Cloud / Robin API key
       is_expand: true
       is_required: true
       is_sensitive: true
@@ -225,3 +225,11 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
+  - project_id: ""
+    opts:
+      title: "Robin Project ID"
+      summary: Robin Project ID
+      description: ""
+      is_expand: true
+      is_required: true
+      is_sensitive: true
