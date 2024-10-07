@@ -231,5 +231,4 @@ inputs:
       summary: Robin Project ID
       description: ""
       is_expand: true
-      is_required: true
-      is_sensitive: true
+      is_required: false

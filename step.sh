@@ -58,11 +58,9 @@ export PATH="$PATH":"$HOME/.maestro/bin"
 # Run Maestro Cloud
 EXIT_CODE=0
 
-
-
 maestro cloud \
 --apiKey $api_key \
-${project_id:+--projectId "$project_id"} \
+${project_id:+--project-id "$project_id"} \
 ${branch:+--branch "$branch"} \
 ${repo_name:+--repoName "$repo_name"} \
 ${repo_owner:+--repoOwner "$repo_owner"} \
