@@ -60,6 +60,7 @@ EXIT_CODE=0
 
 maestro cloud \
 --apiKey $api_key \
+${project_id:+--project-id "$project_id"} \
 ${branch:+--branch "$branch"} \
 ${repo_name:+--repoName "$repo_name"} \
 ${repo_owner:+--repoOwner "$repo_owner"} \
