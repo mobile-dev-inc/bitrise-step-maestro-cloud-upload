@@ -69,7 +69,8 @@ ${upload_name:+--name "$upload_name"} \
 ${is_async:+--async} \
 ${pull_request_id:+--pullRequestId "$pull_request_id"} \
 ${android_api_level:+--android-api-level "$android_api_level"} \
-${ios_version:+--ios-version "$ios_version"} \
+${device_os:+--device-os "$device_os"} \
+${device_model:+--device-model "$device_model"} \
 ${device_locale:+--device-locale "$device_locale"} \
 ${include_tags:+--include-tags "$include_tags"} \
 ${exclude_tags:+--exclude-tags "$exclude_tags"} \
