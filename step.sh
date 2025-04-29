@@ -55,6 +55,9 @@ fi
 
 export PATH="$PATH":"$HOME/.maestro/bin"
 
+echo "Maestro version:"
+maestro -v
+
 # Run Maestro Cloud
 EXIT_CODE=0
 
