@@ -78,7 +78,8 @@ ${is_export:+--format "junit"} \
 ${export_file:+--output "$export_file"} \
 ${env_list:+ $env_list} \
 ${timeout:+--timeout "$timeout"} \
-$app_file $workspace || EXIT_CODE=$?
+--app-file "$app_file" \
+--flows "$workspace" || EXIT_CODE=$?
 
 # Export test results
 if [[ -n "$export_file" && -f "$export_file" ]]; then
