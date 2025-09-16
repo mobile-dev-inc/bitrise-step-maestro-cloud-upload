@@ -234,8 +234,8 @@ inputs:
       is_required: false
   - project_id: ""
     opts:
-      title: "Robin Project ID"
-      summary: Robin Project ID
+      title: "Maestro Cloud Project ID"
+      summary: Maestro Cloud Project ID
       description: ""
       is_expand: true
-      is_required: false
+      is_required: true
