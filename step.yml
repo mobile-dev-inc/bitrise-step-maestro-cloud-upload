@@ -11,8 +11,44 @@ title: |-
   Upload to Maestro Cloud
 summary: |
   Upload your app binary to Maestro Cloud and run your flows
-description: |
-  This steps uploads both your app binary and flows to Maestro Cloud.
+description: |-
+  Run your flows on [Maestro Cloud](https://app.maestro.dev/).
+
+  ## Configuration
+
+  The minimum required configuration is to provide an API key, Project ID and an app binary (an x86 compatible APK for Android, or a Simulator build packaged in a zip archive for iOS).
+
+  If your tests are anywhere but the default `.maestro` folder in the root of your project, you should set the Flow Workspace.
+
+  Full list of step options:
+
+  | Option.                   | Required | Description                                                                                                                                                   |
+  | -------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | API Key                    | Yes      | Maestro Cloud API key, available in [Maestro Cloud](https://app.maestro.dev)                                                                                 |
+  | Maestro Cloud Project ID   | Yes      | Which project to run the tests against                                                                                                                       |
+  | App File                   | Yes      | Path to the app file to upload.                                                                                                                              |
+  | Flow workspace             | No       | Path to Maestro flows (default: `.maestro`)                                                                                                                  |
+  | Upload Name                | No       | Friendly name of the run                                                                                                                                     |
+  | Async Mode                 | No       | Whether to start the flow and exit the action (defaults to `false`)                                                                                          |
+  | Environment variables      | No       | Environment variables to pass to the run                                                                                                                     |
+  | Android api level          | No       | The Android API level to use when running the flows                                                                                                          |
+  | Device OS                  | No       | The [device OS](https://docs.maestro.dev/cloud/reference/configuring-os-version) to use when running iOS flows (eg iOS-16-2)                                 |
+  | Device model               | No       | The [device model](https://docs.maestro.dev/cloud/reference/configuring-os-version#using-a-specific-ios-minor-version-and-device-recommended) (eg iPhone-11) |
+  | Device locale              | No       | The [device locale](https://docs.maestro.dev/cloud/reference/configuring-device-locale) to use when running the flows (eg en_US)                             |
+  | Include tags               | No       | Comma-separated list of tags to include in the run                                                                                                           |
+  | Exclude tags               | No       | Comma-separated list of tags to exclude from the run                                                                                                         |
+  | Export test report (JUnit) | No       | Generate test suite report (JUnit)                                                                                                                           |
+  | Export test output         | No       | Export test file output (Default: report.xml)                                                                                                                |
+  | Mapping File               | No       | Path to the ProGuard map (Android) or dSYM (iOS)                                                                                                             |
+  | Build branch               | No       | The branch this upload originated from                                                                                                                       |
+  | Repository name            | No       | Repository name (ie: GitHub repo slug)                                                                                                                       |
+  | Repository owner           | No       | Repository owner (ie: GitHub organization or user slug)                                                                                                      |
+  | Pull request id            | No       | The ID of the pull request this upload originated from                                                                                                       |
+  | Maestro CLI version        | No       | Maestro CLI version to be downloaded in your CI (Default: latest)                                                                                            |
+  | Timeout                    | No       | How long to wait for the run to complete when not async (defaults to 30 minutes)                                                                             |
+
+
+
 website: https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload
 source_code_url: https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload
 support_url: https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload/issues
@@ -125,22 +161,22 @@ inputs:
       is_required: false
   - android_api_level: ""
     opts:
-      title: "Android api level"
-      summary: "Set the Android api level the devices should run on (Default: 30)"
+      title: "Android API level"
+      summary: "Set the Android API level the devices should run on (Default: 30)"
       description: ""
       is_expand: true
       is_required: false
   - device_os: ""
     opts:
       title: "Device OS"
-      summary: "Set the device OS (Default: iOS-16-2)"
+      summary: "Set the device OS for iOS runs (Default: iOS-16-2)"
       description: ""
       is_expand: true
       is_required: false
   - device_model: ""
     opts:
       title: "Device model"
-      summary: "Set the device model (Default: iPhone-11)"
+      summary: "Set the device model for iOS runs (Default: iPhone-11)"
       description: ""
       is_expand: true
       is_required: false
