@@ -109,7 +109,7 @@ inputs:
       title: "API Key"
       summary: Maestro Cloud API key
       description: |
-        Maestro Cloud API key
+        API Key found in the Maestro Cloud web console (https://app.maestro.dev/)
       is_expand: true
       is_required: true
       is_sensitive: true
@@ -118,7 +118,7 @@ inputs:
       title: "App File"
       summary: "App binary to run your Flows against"
       description: |
-        **Android**: `app_file` should point to an x86 compatible APK file. **iOS**: `app_file` should point to an x86 compatible Simulator build packaged in a zip archive.
+        **Android**: `app_file` should point to an x86 compatible APK file. **iOS**: `app_file` should point to a Simulator build packaged in a zip archive.
       is_expand: true
       is_required: true
   - workspace: ".maestro"
@@ -147,7 +147,7 @@ inputs:
       title: Async Mode
       summary: Run in async mode
       description: |
-        If you don't want the action to wait until the Upload has been completed as is the default behaviour, set the async argument to true
+        If you don't want the action to wait until the Upload has been completed (as is the default behaviour), set the async argument to true
       is_expand: true
       is_required: false
   - env: ""
@@ -162,7 +162,7 @@ inputs:
   - android_api_level: ""
     opts:
       title: "Android API level"
-      summary: "Set the Android API level the devices should run on (Default: 30)"
+      summary: "Set the Android API level the devices should run on (Default: 33)"
       description: ""
       is_expand: true
       is_required: false
@@ -190,14 +190,14 @@ inputs:
   - include_tags: ""
     opts:
       title: "Include tags"
-      summary: "Run only flows that contain the specified tags (comma separated) i.e dev,pull-request"
+      summary: "Run only flows that contain the specified tags (comma separated), e.g. dev,pull-request"
       description: ""
       is_expand: true
       is_required: false
   - exclude_tags: ""
     opts:
       title: "Exclude tags"
-      summary: "Exclude flows from running with the specified tags (comma separated) i.e pull-request,experimental"
+      summary: "Exclude flows from running with the specified tags (comma separated), e.g. pull-request,experimental"
       description: ""
       is_expand: true
       is_required: false
@@ -236,14 +236,14 @@ inputs:
   - repo_name: $BITRISEIO_GIT_REPOSITORY_SLUG
     opts:
       title: "Repository name"
-      summary: "Repository name (ie: GitHub repo slug)"
+      summary: "Repository name (e.g. GitHub repo slug)"
       description: ""
       is_expand: true
       is_required: false
   - repo_owner: $BITRISEIO_GIT_REPOSITORY_OWNER
     opts:
       title: "Repository owner"
-      summary: "Repository owner (ie: GitHub organization or user slug)"
+      summary: "Repository owner (e.g. GitHub organization or user slug)"
       description: ""
       is_expand: true
       is_required: false
