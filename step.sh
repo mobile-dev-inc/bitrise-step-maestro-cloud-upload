@@ -4,13 +4,24 @@
 export MDEV_CI="bitrise"
 
 # Parse env variables
-env_list=""
+env_list=()
+SAVEIFS=$IFS
 if [ -n "$env" ]; then
-    # Replace '\n' with ' -e '
-    envs="${env//\\n/ -e }"
-    # Prefix the whole string with '-e '
-    env_list="-e $envs"
+    echo "DEBUG: env = '$env'"
+    sanitised_env="${env//\\n/$'\n'}" # Convert \n into actual newlines
+    echo "DEBUG: sanitised_env = '$sanitised_env'"
+    
+    IFS=$'\n'
+    env_lines=($sanitised_env) # Read input into an array, splitting on newlines
+    
+    echo "DEBUG: env_lines = '${env_lines[*]}'"
+    for line in "${env_lines[@]}"; do
+        echo "DEBUG: line = '$line'"
+        env_list+=("-e $line")
+    done
 fi
+env_list="${env_list[@]}" # Convert array to space-separated string
+IFS=$SAVEIFS
 
 # Refine variables
 [[ "$async" == "true" ]] && is_async="true"
