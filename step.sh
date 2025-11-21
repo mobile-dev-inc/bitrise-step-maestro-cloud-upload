@@ -4,13 +4,24 @@
 export MDEV_CI="bitrise"
 
 # Parse env variables
-env_list=""
+env_list=()
+SAVEIFS=$IFS
 if [ -n "$env" ]; then
-    # Replace '\n' with ' -e '
-    envs="${env//\\n/ -e }"
-    # Prefix the whole string with '-e '
-    env_list="-e $envs"
+    echo "DEBUG: env = '$env'"
+    sanitised_env="${env//\\n/$'\n'}" # Convert \n into actual newlines
+    echo "DEBUG: sanitised_env = '$sanitised_env'"
+    
+    IFS=$'\n'
+    env_lines=($sanitised_env) # Read input into an array, splitting on newlines
+    
+    echo "DEBUG: env_lines = '${env_lines[*]}'"
+    for line in "${env_lines[@]}"; do
+        echo "DEBUG: line = '$line'"
+        env_list+=("-e $line")
+    done
 fi
+env_list="${env_list[@]}" # Convert array to space-separated string
+IFS=$SAVEIFS
 
 # Refine variables
 [[ "$async" == "true" ]] && is_async="true"
@@ -42,26 +53,28 @@ echo "Current curl version: $curl_version"
 
 required_version="7.71.0"
 
-# Compare versions
-if [ "$(printf '%s\n' "$required_version" "$curl_version" | sort -V | head -n1)" = "$required_version" ]; then
-    # If the version of curl is greater than or equal to 7.71.0, execute with --retry-all-errors
-    echo "version is higher or equal 7.71.0"
-    curl --retry 5 --retry-all-errors -Ls "https://get.maestro.mobile.dev" | bash
-else
-    # If the version of curl is less than 7.71.0, execute without --retry-all-errors
-    echo "version is lower than 7.71.0"
-    curl --retry 5 -Ls "https://get.maestro.mobile.dev" | bash
+if [ -z "${SKIP_MAESTRO_INSTALL}" ]; then # Only set in test modes
+    # Compare versions and install Maestro
+    if [ "$(printf '%s\n' "$required_version" "$curl_version" | sort -V | head -n1)" = "$required_version" ]; then
+        # If the version of curl is greater than or equal to 7.71.0, execute with --retry-all-errors
+        echo "version is higher or equal 7.71.0"
+        curl --retry 5 --retry-all-errors -Ls "https://get.maestro.mobile.dev" | bash
+    else
+        # If the version of curl is less than 7.71.0, execute without --retry-all-errors
+        echo "version is lower than 7.71.0"
+        curl --retry 5 -Ls "https://get.maestro.mobile.dev" | bash
+    fi
+
+    export PATH="$PATH":"$HOME/.maestro/bin"
+
+    echo "Maestro version:"
+    maestro -v
 fi
-
-export PATH="$PATH":"$HOME/.maestro/bin"
-
-echo "Maestro version:"
-maestro -v
 
 # Run Maestro Cloud
 EXIT_CODE=0
 
-maestro cloud \
+CLOUD_COMMAND=(maestro cloud \
 --apiKey $api_key \
 ${project_id:+--project-id "$project_id"} \
 ${branch:+--branch "$branch"} \
@@ -82,7 +95,16 @@ ${export_file:+--output "$export_file"} \
 ${env_list:+ $env_list} \
 ${timeout:+--timeout "$timeout"} \
 --app-file "$app_file" \
---flows "$workspace" || EXIT_CODE=$?
+--flows "$workspace")
+
+echo "Running command: ${CLOUD_COMMAND[@]}"
+
+if [ "$BATS_TEST_MODE" == "true" ]; then
+  # In BATS test mode, don't execute - we've already printed what we would've done just above.
+  exit 0
+fi
+
+"${CLOUD_COMMAND[@]}" || EXIT_CODE=$?
 
 # Export test results
 if [[ -n "$export_file" && -f "$export_file" ]]; then
