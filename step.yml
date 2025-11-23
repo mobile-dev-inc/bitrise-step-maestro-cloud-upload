@@ -26,7 +26,8 @@ description: |-
   | -------------------------- | --------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
   | API Key                    | `api_key`             | Yes      | Maestro Cloud API key, available in [Maestro Cloud](https://app.maestro.dev)                                                                                 |
   | Maestro Cloud Project ID   | `project_id`          | Yes      | Which project to run the tests against                                                                                                                       |
-  | App File                   | `app_file`            | Yes      | Path to the app file to upload.                                                                                                                              |
+  | App File                   | `app_file`            | No       | Path to the app file to upload. This, or App Binary ID, must be provided.                                                                                    |
+  | App Binary ID              | `app_binary_id`.      | No       | The unique identifier of the app binary in Maestro Cloud. This, or App File, must be provided.                                                               |
   | Flow workspace             | `workspace`           | No       | Path to Maestro flows (default: `.maestro`)                                                                                                                  |
   | Upload Name                | `upload_name`         | No       | Friendly name of the run                                                                                                                                     |
   | Async Mode                 | `async`               | No       | Whether to start the flow and exit the action (defaults to `false`)                                                                                          |
@@ -125,9 +126,17 @@ inputs:
       title: "App File"
       summary: "App binary to run your Flows against"
       description: |
-        **Android**: `app_file` should point to an x86 compatible APK file. **iOS**: `app_file` should point to a Simulator build packaged in a zip archive.
+        **Android**: `app_file` should point to an x86 compatible APK file. **iOS**: `app_file` should point to a Simulator build packaged in a zip archive. An App File or App Binary ID must be provided.
       is_expand: true
-      is_required: true
+      is_required: false
+  - app_binary_id: ""
+    opts:
+      title: "App Binary ID"
+      summary: "The unique identifier of the app binary in Maestro Cloud"
+      description: |
+        The unique identifier of a previously uploaded app binary in Maestro Cloud. An App File or App Binary ID must be provided.
+      is_expand: true
+      is_required: false
   - workspace: ".maestro"
     opts:
       title: "Flow workspace"

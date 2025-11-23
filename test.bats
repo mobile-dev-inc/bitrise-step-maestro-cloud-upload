@@ -20,6 +20,7 @@ setup() {
 
   # Unset all optional parameters
   unset env
+  unset app_binary_id
 }
 
 run_script() {
@@ -69,4 +70,41 @@ BAR=another'
   assert_success
 
   check_command_contains "-e FOO=value -e BAR=another"
+}
+
+@test "constructs command with app_binary_id parameter" {
+  # Set app_binary_id and remove the default app_file
+  export app_binary_id="ab_456"
+  unset app_file
+
+  run_script
+
+  assert_success
+
+  check_command_contains "--app-binary-id ab_456"
+}
+
+@test "fails when neither app_file nor app_binary_id provided" {
+  # Unset both to simulate missing inputs
+  unset app_file
+  unset app_binary_id
+
+  run_script
+
+  assert_failure
+
+  assert_output --partial "Error: Either an App File or an App Binary ID must be provided."
+}
+
+@test "includes both app_file and app_binary_id when both provided" {
+  export app_binary_id="ab_456"
+  # `app_file` already set by `setup()`
+
+  run_script
+
+  assert_success
+
+  check_command_contains "--app-binary-id ab_456"
+  check_command_contains "--app-file app.apk"
+  # This is correct - when a user specifies both, the `maestro cloud` command will favour the app_binary_id
 }
