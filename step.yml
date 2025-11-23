@@ -117,7 +117,7 @@ inputs:
     opts:
       title: "Maestro Cloud Project ID"
       summary: Maestro Cloud Project ID
-      description: ""
+      description: "Project ID found in the Maestro Cloud console (https://app.maestro.dev/)"
       is_expand: true
       is_required: true
   - app_file: ""
@@ -133,7 +133,7 @@ inputs:
       title: "Flow workspace"
       summary: Flow file or directory
       description: |
-        By default, the action is looking for a .maestro folder with Maestro flows in the root directory of the project.
+        By default, the action is looking for a `.maestro` folder with Maestro flows in the root directory of the project.
          If you would like to customize this behaviour, you can override it with a workspace argument"
       is_expand: true
       is_required: false
@@ -142,7 +142,7 @@ inputs:
       title: "Upload Name"
       summary: Custom upload name
       description: |
-        "A name will automatically be provided according to the following order:
+        A name will automatically be provided according to the following order:
           - If it is a Pull Request, use Pull Request title as name
           - If it is a normal push, use commit message as name
           - If for some reason the commit message is not available, use the commit SHA as name
@@ -163,35 +163,35 @@ inputs:
       summary: Pass environment variables to your flows
       description: |
         If you want to pass environment variables along with your upload, add variables separated by a new line or **\n**.
-        i.e VAR1=1\nVAR2=2 ...
+        e.g. VAR1=1\nVAR2=2 ...
       is_expand: true
       is_required: false
   - android_api_level: ""
     opts:
       title: "Android API level"
-      summary: "Set the Android API level the devices should run on (Default: 33)"
+      summary: "The Android API level the devices should run (Default: 33)"
       description: ""
       is_expand: true
       is_required: false
   - device_os: ""
     opts:
       title: "Device OS"
-      summary: "Set the device OS for iOS runs (Default: iOS-16-2)"
+      summary: "The device OS for iOS runs (Default: iOS-16-2)"
       description: ""
       is_expand: true
       is_required: false
   - device_model: ""
     opts:
       title: "Device model"
-      summary: "Set the device model for iOS runs (Default: iPhone-11)"
+      summary: "The device model for iOS runs (Default: iPhone-11)"
       description: ""
       is_expand: true
       is_required: false
   - device_locale: ""
     opts:
       title: "Device locale"
-      summary: "Set the device locale (Default: en_US)"
-      description: "A combination of lowercase ISO-639-1 code and uppercase ISO-3166-1 code should be used, i.e. de_DE for Germany."
+      summary: "The device locale (Default: en_US)"
+      description: "A combination of lowercase ISO-639-1 code and uppercase ISO-3166-1 code should be used, e.g. de_DE for Germany. Note that this sets locale, but not location."
       is_expand: true
       is_required: false
   - include_tags: ""
@@ -264,7 +264,7 @@ inputs:
   - maestro_cli_version: ""
     opts:
       title: "Maestro CLI version"
-      summary: "Maestro CLI version to be downloaded in your CI (Default: latest)"
+      summary: "Maestro CLI version to be used in executing your Bitrise workflow (Default: latest)"
       description: ""
       is_expand: true
       is_required: false
