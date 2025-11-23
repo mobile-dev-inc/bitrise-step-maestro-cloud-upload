@@ -113,6 +113,13 @@ inputs:
       is_expand: true
       is_required: true
       is_sensitive: true
+  - project_id: ""
+    opts:
+      title: "Maestro Cloud Project ID"
+      summary: Maestro Cloud Project ID
+      description: ""
+      is_expand: true
+      is_required: true
   - app_file: ""
     opts:
       title: "App File"
@@ -268,10 +275,4 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
-  - project_id: ""
-    opts:
-      title: "Maestro Cloud Project ID"
-      summary: Maestro Cloud Project ID
-      description: ""
-      is_expand: true
-      is_required: true
+  
