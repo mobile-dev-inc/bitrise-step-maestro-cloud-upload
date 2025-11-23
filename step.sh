@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Metadata
 export MDEV_CI="bitrise"
@@ -32,6 +32,11 @@ if [[ "$is_export" == "true" ]]; then
     if [[ -z "$export_output" ]]; then
         export_file="report.xml"
     fi
+fi
+
+if [[ -z "$app_binary_id" && -z "$app_file" ]]; then
+    echo "Error: Either an App File or an App Binary ID must be provided."
+    exit 1
 fi
 
 set -ex
@@ -94,10 +99,11 @@ ${is_export:+--format "junit"} \
 ${export_file:+--output "$export_file"} \
 ${env_list:+ $env_list} \
 ${timeout:+--timeout "$timeout"} \
---app-file "$app_file" \
+${app_binary_id:+--app-binary-id "$app_binary_id"} \
+${app_file:+--app-file "$app_file"} \
 --flows "$workspace")
 
-echo "Running command: ${CLOUD_COMMAND[@]}"
+echo "Running command:" "${CLOUD_COMMAND[@]}"
 
 if [ "$BATS_TEST_MODE" == "true" ]; then
   # In BATS test mode, don't execute - we've already printed what we would've done just above.
