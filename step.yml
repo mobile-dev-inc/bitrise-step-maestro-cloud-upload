@@ -22,30 +22,30 @@ description: |-
 
   Full list of step options:
 
-  | Option.                   | Required | Description                                                                                                                                                   |
-  | -------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | API Key                    | Yes      | Maestro Cloud API key, available in [Maestro Cloud](https://app.maestro.dev)                                                                                 |
-  | Maestro Cloud Project ID   | Yes      | Which project to run the tests against                                                                                                                       |
-  | App File                   | Yes      | Path to the app file to upload.                                                                                                                              |
-  | Flow workspace             | No       | Path to Maestro flows (default: `.maestro`)                                                                                                                  |
-  | Upload Name                | No       | Friendly name of the run                                                                                                                                     |
-  | Async Mode                 | No       | Whether to start the flow and exit the action (defaults to `false`)                                                                                          |
-  | Environment variables      | No       | Environment variables to pass to the run                                                                                                                     |
-  | Android api level          | No       | The Android API level to use when running the flows                                                                                                          |
-  | Device OS                  | No       | The [device OS](https://docs.maestro.dev/cloud/reference/configuring-os-version) to use when running iOS flows (eg iOS-16-2)                                 |
-  | Device model               | No       | The [device model](https://docs.maestro.dev/cloud/reference/configuring-os-version#using-a-specific-ios-minor-version-and-device-recommended) (eg iPhone-11) |
-  | Device locale              | No       | The [device locale](https://docs.maestro.dev/cloud/reference/configuring-device-locale) to use when running the flows (eg en_US)                             |
-  | Include tags               | No       | Comma-separated list of tags to include in the run                                                                                                           |
-  | Exclude tags               | No       | Comma-separated list of tags to exclude from the run                                                                                                         |
-  | Export test report (JUnit) | No       | Generate test suite report (JUnit)                                                                                                                           |
-  | Export test output         | No       | Export test file output (Default: report.xml)                                                                                                                |
-  | Mapping File               | No       | Path to the ProGuard map (Android) or dSYM (iOS)                                                                                                             |
-  | Build branch               | No       | The branch this upload originated from                                                                                                                       |
-  | Repository name            | No       | Repository name (ie: GitHub repo slug)                                                                                                                       |
-  | Repository owner           | No       | Repository owner (ie: GitHub organization or user slug)                                                                                                      |
-  | Pull request id            | No       | The ID of the pull request this upload originated from                                                                                                       |
-  | Maestro CLI version        | No       | Maestro CLI version to be downloaded in your CI (Default: latest)                                                                                            |
-  | Timeout                    | No       | How long to wait for the run to complete when not async (defaults to 30 minutes)                                                                             |
+  | Name                       | Key                   | Required | Description                                                                                                                                                  |
+  | -------------------------- | --------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | API Key                    | `api_key`             | Yes      | Maestro Cloud API key, available in [Maestro Cloud](https://app.maestro.dev)                                                                                 |
+  | Maestro Cloud Project ID   | `project_id`          | Yes      | Which project to run the tests against                                                                                                                       |
+  | App File                   | `app_file`            | Yes      | Path to the app file to upload.                                                                                                                              |
+  | Flow workspace             | `workspace`           | No       | Path to Maestro flows (default: `.maestro`)                                                                                                                  |
+  | Upload Name                | `upload_name`         | No       | Friendly name of the run                                                                                                                                     |
+  | Async Mode                 | `async`               | No       | Whether to start the flow and exit the action (defaults to `false`)                                                                                          |
+  | Environment variables      | `env`                 | No       | Environment variables to pass to the run                                                                                                                     |
+  | Android API level          | `android_api_level`   | No       | The Android API level to use when running the flows                                                                                                          |
+  | Device OS                  | `device_os`           | No       | The [device OS](https://docs.maestro.dev/cloud/reference/configuring-os-version) to use when running iOS flows (eg iOS-16-2)                                 |
+  | Device model               | `device_model`        | No       | The [device model](https://docs.maestro.dev/cloud/reference/configuring-os-version#using-a-specific-ios-minor-version-and-device-recommended) (eg iPhone-11) |
+  | Device locale              | `device_locale`       | No       | The [device locale](https://docs.maestro.dev/cloud/reference/configuring-device-locale) to use when running the flows (eg en_US)                             |
+  | Include tags               | `include_tags`        | No       | Comma-separated list of tags to include in the run                                                                                                           |
+  | Exclude tags               | `exclude_tags`        | No       | Comma-separated list of tags to exclude from the run                                                                                                         |
+  | Export test report (JUnit) | `export_test_report`  | No       | Generate test suite report (JUnit)                                                                                                                           |
+  | Export test output         | `export_output`       | No       | Export test file output (Default: report.xml)                                                                                                                |
+  | Mapping File               | `mapping_file`        | No       | Path to the ProGuard map (Android) or dSYM (iOS)                                                                                                             |
+  | Build branch               | `branch`              | No       | The branch this upload originated from                                                                                                                       |
+  | Repository name            | `repo_name`           | No       | Repository name (ie: GitHub repo slug)                                                                                                                       |
+  | Repository owner           | `repo_owner`          | No       | Repository owner (ie: GitHub organization or user slug)                                                                                                      |
+  | Pull request ID            | `pull_request_id`     | No       | The ID of the pull request this upload originated from                                                                                                       |
+  | Maestro CLI version        | `maestro_cli_version` | No       | Maestro CLI version to be downloaded in your CI (Default: latest)                                                                                            |
+  | Timeout                    | `timeout`             | No       | How long to wait for the run to complete when not async (defaults to 30 minutes)                                                                             |
 
 
 
