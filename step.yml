@@ -49,7 +49,7 @@ description: |-
   | Timeout                    | `timeout`             | No       | How long to wait for the run to complete when not async (defaults to 30 minutes)                                                                             |
   | Debug Mode                 | `debug_mode`          | No       | Prints shell commands as they execute. Set to any non-blank value to enable.                                                                                 |
 
-
+  See the [Changelog](https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload/blob/main/CHANGELOG.md) for recent updates.
 
 website: https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload
 source_code_url: https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload
