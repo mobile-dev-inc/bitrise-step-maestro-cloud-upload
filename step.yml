@@ -47,6 +47,7 @@ description: |-
   | Pull request ID            | `pull_request_id`     | No       | The ID of the pull request this upload originated from                                                                                                       |
   | Maestro CLI version        | `maestro_cli_version` | No       | Maestro CLI version to be downloaded in your CI (Default: latest)                                                                                            |
   | Timeout                    | `timeout`             | No       | How long to wait for the run to complete when not async (defaults to 30 minutes)                                                                             |
+  | Debug Mode                 | `debug_mode`          | No       | Prints shell commands as they execute. Set to any non-blank value to enable.                                                                                 |
 
 
 
@@ -284,4 +285,10 @@ inputs:
       description: ""
       is_expand: true
       is_required: false
-  
+  - debug_mode: ""
+    opts:
+      title: Debug Mode
+      summary: Print shell commands as they execute, for debugging purposes
+      description: ""
+      is_expand: false
+      is_required: false

@@ -21,6 +21,7 @@ setup() {
   # Unset all optional parameters
   unset env
   unset app_binary_id
+  unset debug_mode
 }
 
 run_script() {
@@ -107,4 +108,14 @@ BAR=another'
   check_command_contains "--app-binary-id ab_456"
   check_command_contains "--app-file app.apk"
   # This is correct - when a user specifies both, the `maestro cloud` command will favour the app_binary_id
+}
+
+@test "debug mode enabled with debug_mode input" {
+  export debug_mode="yes please"
+
+  run_script
+
+  assert_success
+
+  assert_output --partial "required_version=7.71.0" # A variable set for the curl check
 }

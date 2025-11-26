@@ -39,7 +39,12 @@ if [[ -z "$app_binary_id" && -z "$app_file" ]]; then
     exit 1
 fi
 
-set -ex
+if [[ -n "$debug_mode" ]]; then
+    set -ex
+else
+    set -e
+fi
+
 
 # Change to source directory
 cd $BITRISE_SOURCE_DIR
