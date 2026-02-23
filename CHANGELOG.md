@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.7.0 - tbc
+## 1.7.0 - 2025-11-26
 
 - Improved environment variable parsing
 - Introduced tests with [BATS](https://bats-core.readthedocs.io/en/stable/)
