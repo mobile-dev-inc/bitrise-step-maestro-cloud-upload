@@ -74,6 +74,16 @@ check_command_contains() {
   check_command_contains "-e FOO=value"
 }
 
+@test "parses env parameter with space in value" {
+  export env="FOO=hello world"
+
+  run_script
+
+  assert_success
+
+  check_command_contains "-e FOO=hello world"
+}
+
 @test "parses multiple env parameters" {
   export env='FOO=value\nBAR=another'
 
