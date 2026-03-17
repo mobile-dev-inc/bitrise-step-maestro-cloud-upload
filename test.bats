@@ -3,15 +3,36 @@
 bats_load_library 'bats-support'
 bats_load_library 'bats-assert'
 
+setup_fake_maestro() {
+  mkdir -p "$BATS_FILE_TMPDIR/bin"
+
+  cat > "$BATS_FILE_TMPDIR/bin/maestro" << 'EOF'
+#!/usr/bin/env bash
+echo "App binary id: app_abc123"
+echo "Visit Maestro Cloud for more details about this upload:"
+echo "https://app.maestro.dev/project/proj_123/upload/upload_abc"
+EOF
+  chmod +x "$BATS_FILE_TMPDIR/bin/maestro"
+
+  cat > "$BATS_FILE_TMPDIR/bin/envman" << 'EOF'
+#!/usr/bin/env bash
+echo "envman $*"
+EOF
+  chmod +x "$BATS_FILE_TMPDIR/bin/envman"
+
+  export PATH="$BATS_FILE_TMPDIR/bin:$PATH"
+  export BITRISE_SOURCE_DIR="."
+}
+
 setup_file() {
   export SCRIPT=./step.sh
-  export BATS_TEST_MODE=true
+  setup_fake_maestro
 }
 
 setup() {
   # Set the default settings
   export SKIP_MAESTRO_INSTALL="yes"
-  
+
   # Set the default parameters
   export api_key="rb_123"
   export project_id="proj_123"
@@ -118,4 +139,18 @@ BAR=another'
   assert_success
 
   assert_output --partial "required_version=7.71.0" # A variable set for the curl check
+}
+
+@test "parses MAESTRO_CLOUD_APP_BINARY_ID from command output" {
+  run_script
+
+  assert_success
+  assert_output --partial "envman add --key MAESTRO_CLOUD_APP_BINARY_ID --value app_abc123"
+}
+
+@test "parses MAESTRO_CLOUD_RUN_URL from command output" {
+  run_script
+
+  assert_success
+  assert_output --partial "envman add --key MAESTRO_CLOUD_RUN_URL --value https://app.maestro.dev/project/proj_123/upload/upload_abc"
 }

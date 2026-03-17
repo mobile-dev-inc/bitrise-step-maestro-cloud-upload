@@ -110,11 +110,6 @@ ${app_file:+--app-file "$app_file"} \
 
 echo "Running command:" "${CLOUD_COMMAND[@]}"
 
-if [ "$BATS_TEST_MODE" == "true" ]; then
-  # In BATS test mode, don't execute - we've already printed what we would've done just above.
-  exit 0
-fi
-
 OUTPUT_FILE=$(mktemp)
 
 "${CLOUD_COMMAND[@]}" | tee "$OUTPUT_FILE"; EXIT_CODE=${PIPESTATUS[0]}
