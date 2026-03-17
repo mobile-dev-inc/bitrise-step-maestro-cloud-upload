@@ -292,3 +292,18 @@ inputs:
       description: ""
       is_expand: false
       is_required: false
+outputs:
+  - MAESTRO_CLOUD_APP_BINARY_ID: ""
+    opts:
+      title: "Maestro Cloud App Binary ID"
+      summary: "The App Binary ID reported by Maestro Cloud after upload"
+      description: |
+        The unique identifier of the uploaded app binary - can be used in future uploads to avoid reuploading.
+      is_expand: false
+  - MAESTRO_CLOUD_RUN_URL: ""
+    opts:
+      title: "Maestro Cloud Run URL"
+      summary: "The Maestro Cloud URL for this upload"
+      description: |
+        The URL to view this test run in Maestro Cloud.
+      is_expand: false

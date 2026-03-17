@@ -115,7 +115,16 @@ if [ "$BATS_TEST_MODE" == "true" ]; then
   exit 0
 fi
 
-"${CLOUD_COMMAND[@]}" || EXIT_CODE=$?
+OUTPUT_FILE=$(mktemp)
+
+"${CLOUD_COMMAND[@]}" | tee "$OUTPUT_FILE"; EXIT_CODE=${PIPESTATUS[0]}
+
+MAESTRO_CLOUD_APP_BINARY_ID=$(grep -oE "App binary id: \S+" "$OUTPUT_FILE" | awk '{print $NF}')
+envman add --key MAESTRO_CLOUD_APP_BINARY_ID --value "$MAESTRO_CLOUD_APP_BINARY_ID"
+MAESTRO_CLOUD_RUN_URL=$(grep -oE "https://app\.maestro\.dev\S+" "$OUTPUT_FILE" | head -n 1)
+envman add --key MAESTRO_CLOUD_RUN_URL --value "$MAESTRO_CLOUD_RUN_URL"
+
+rm -f "$OUTPUT_FILE"
 
 # Export test results
 if [[ -n "$export_file" && -f "$export_file" ]]; then
