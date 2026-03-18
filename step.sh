@@ -110,12 +110,16 @@ ${app_file:+--app-file "$app_file"} \
 
 echo "Running command:" "${CLOUD_COMMAND[@]}"
 
-if [ "$BATS_TEST_MODE" == "true" ]; then
-  # In BATS test mode, don't execute - we've already printed what we would've done just above.
-  exit 0
-fi
+OUTPUT_FILE=$(mktemp)
 
-"${CLOUD_COMMAND[@]}" || EXIT_CODE=$?
+"${CLOUD_COMMAND[@]}" | tee "$OUTPUT_FILE"; EXIT_CODE=${PIPESTATUS[0]}
+
+MAESTRO_CLOUD_APP_BINARY_ID=$(grep -oE "App binary id: \S+" "$OUTPUT_FILE" | awk '{print $NF}')
+envman add --key MAESTRO_CLOUD_APP_BINARY_ID --value "$MAESTRO_CLOUD_APP_BINARY_ID"
+MAESTRO_CLOUD_RUN_URL=$(grep -oE "https://app\.maestro\.dev\S+" "$OUTPUT_FILE" | head -n 1)
+envman add --key MAESTRO_CLOUD_RUN_URL --value "$MAESTRO_CLOUD_RUN_URL"
+
+rm -f "$OUTPUT_FILE"
 
 # Export test results
 if [[ -n "$export_file" && -f "$export_file" ]]; then
