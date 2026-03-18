@@ -4,7 +4,7 @@
 export MDEV_CI="bitrise"
 
 # Parse env variables
-env_list=()
+env_list_array=()
 SAVEIFS=$IFS
 if [ -n "$env" ]; then
     echo "DEBUG: env = '$env'"
@@ -17,10 +17,9 @@ if [ -n "$env" ]; then
     echo "DEBUG: env_lines = '${env_lines[*]}'"
     for line in "${env_lines[@]}"; do
         echo "DEBUG: line = '$line'"
-        env_list+=("-e $line")
+        env_list_array+=("-e" "$line")
     done
 fi
-env_list="${env_list[@]}" # Convert array to space-separated string
 IFS=$SAVEIFS
 
 # Refine variables
@@ -91,7 +90,7 @@ ${branch:+--branch "$branch"} \
 ${repo_name:+--repoName "$repo_name"} \
 ${repo_owner:+--repoOwner "$repo_owner"} \
 ${mapping_file:+--mapping "$mapping_file"} \
-${upload_name:+--name "$upload_name"} \
+${upload_name:+--name "\"$upload_name\""} \
 ${is_async:+--async} \
 ${pull_request_id:+--pullRequestId "$pull_request_id"} \
 ${android_api_level:+--android-api-level "$android_api_level"} \
@@ -102,7 +101,7 @@ ${include_tags:+--include-tags "$include_tags"} \
 ${exclude_tags:+--exclude-tags "$exclude_tags"} \
 ${is_export:+--format "junit"} \
 ${export_file:+--output "$export_file"} \
-${env_list:+ $env_list} \
+${env_list_array[@]+"${env_list_array[@]}"} \
 ${timeout:+--timeout "$timeout"} \
 ${app_binary_id:+--app-binary-id "$app_binary_id"} \
 ${app_file:+--app-file "$app_file"} \

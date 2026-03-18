@@ -43,6 +43,7 @@ setup() {
   unset env
   unset app_binary_id
   unset debug_mode
+  unset upload_name
 }
 
 run_script() {
@@ -71,6 +72,16 @@ check_command_contains() {
   assert_success
 
   check_command_contains "-e FOO=value"
+}
+
+@test "parses env parameter with space in value" {
+  export env="FOO=hello world"
+
+  run_script
+
+  assert_success
+
+  check_command_contains "-e FOO=hello world"
 }
 
 @test "parses multiple env parameters" {
@@ -139,6 +150,16 @@ BAR=another'
   assert_success
 
   assert_output --partial "required_version=7.71.0" # A variable set for the curl check
+}
+
+@test "names with spaces are sensibly handled" {
+  export upload_name="My App Test"
+  
+  run_script
+
+  assert_success
+
+  check_command_contains '--name "My App Test"'
 }
 
 @test "parses MAESTRO_CLOUD_APP_BINARY_ID from command output" {
