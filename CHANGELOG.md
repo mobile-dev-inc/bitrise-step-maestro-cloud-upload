@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.8.0 - 2026-03-18
+
+- Added outputs for the Maestro Cloud Run URL and App Binary ID
+- Fixed whitespace problems for upload names and environment variables
+- Improved readme
+
 ## 1.7.0 - 2025-11-26
 
 - Improved environment variable parsing
