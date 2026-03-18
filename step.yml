@@ -49,6 +49,13 @@ description: |-
   | Timeout                    | `timeout`             | No       | How long to wait for the run to complete when not async (defaults to 30 minutes)                                                                             |
   | Debug Mode                 | `debug_mode`          | No       | Prints shell commands as they execute. Set to any non-blank value to enable.                                                                                 |
 
+  ## Outputs
+
+  | Name                        | Key                            | Description                                                                                               |
+  | --------------------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------- |
+  | Maestro Cloud App Binary ID | `MAESTRO_CLOUD_APP_BINARY_ID`  | The unique identifier of the uploaded app binary — can be reused in future uploads to skip re-uploading.  |
+  | Maestro Cloud Run URL       | `MAESTRO_CLOUD_RUN_URL`        | The URL to view this test run in Maestro Cloud.                                                           |
+
   See the [Changelog](https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload/blob/main/CHANGELOG.md) for recent updates.
 
 website: https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload
