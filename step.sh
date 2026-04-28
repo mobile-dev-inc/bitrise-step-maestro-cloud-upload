@@ -83,6 +83,10 @@ fi
 # Run Maestro Cloud
 EXIT_CODE=0
 
+if [ -n "$android_api_level" ]; then
+    echo "WARN: 'android_api_level' is deprecated and will be removed in a future release. Use 'device_os' instead (e.g. device_os: android-33)."
+fi
+
 CLOUD_COMMAND=(maestro cloud \
 --apiKey $api_key \
 ${project_id:+--project-id "$project_id"} \

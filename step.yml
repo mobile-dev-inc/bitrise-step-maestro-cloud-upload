@@ -32,9 +32,9 @@ description: |-
   | Upload Name                | `upload_name`         | No       | Friendly name of the run                                                                                                                                     |
   | Async Mode                 | `async`               | No       | Whether to start the flow and exit the action (defaults to `false`)                                                                                          |
   | Environment variables      | `env`                 | No       | Environment variables to pass to the run                                                                                                                     |
-  | Android API level          | `android_api_level`   | No       | The Android API level to use when running the flows                                                                                                          |
-  | Device OS                  | `device_os`           | No       | The [device OS](https://docs.maestro.dev/cloud/reference/configuring-os-version) to use when running iOS flows (eg iOS-16-2)                                 |
-  | Device model               | `device_model`        | No       | The [device model](https://docs.maestro.dev/cloud/reference/configuring-os-version#using-a-specific-ios-minor-version-and-device-recommended) (eg iPhone-11) |
+  | Android API level          | `android_api_level`   | No       | **Deprecated.** Use `device_os` instead (e.g. `android-33`).                                                                                                 |
+  | Device OS                  | `device_os`           | No       | The [device OS version](https://docs.maestro.dev/cloud/reference/configuring-os-version) to use. iOS: `iOS-16-2`, `iOS-17-5`, `iOS-18-2`, etc. Android: `android-33`, `android-34`, etc. |
+  | Device model               | `device_model`        | No       | The [device model](https://docs.maestro.dev/cloud/reference/configuring-os-version#using-a-specific-ios-minor-version-and-device-recommended). iOS: `iPhone-11`, `iPhone-11-Pro`, etc. Android: `pixel_6`, `pixel_7`, etc. |
   | Device locale              | `device_locale`       | No       | The [device locale](https://docs.maestro.dev/cloud/reference/configuring-device-locale) to use when running the flows (eg en_US)                             |
   | Include tags               | `include_tags`        | No       | Comma-separated list of tags to include in the run                                                                                                           |
   | Exclude tags               | `exclude_tags`        | No       | Comma-separated list of tags to exclude from the run                                                                                                         |
@@ -185,23 +185,30 @@ inputs:
       is_required: false
   - android_api_level: ""
     opts:
-      title: "Android API level"
-      summary: "The Android API level the devices should run (Default: 33)"
-      description: ""
+      title: "Android API level (Deprecated)"
+      summary: "Deprecated. Use `device_os` instead (e.g. android-33)."
+      description: |
+        **Deprecated.** This input will be removed in a future release. Use `device_os` instead (e.g. `android-33`).
       is_expand: true
       is_required: false
   - device_os: ""
     opts:
       title: "Device OS"
-      summary: "The device OS for iOS runs (Default: iOS-16-2)"
-      description: ""
+      summary: "OS version to run on. iOS: iOS-16-2, iOS-18-2, etc. Android: android-33, android-34, etc."
+      description: |
+        OS version to run your flows on.
+        - iOS examples: `iOS-16-2`, `iOS-17-5`, `iOS-18-2`
+        - Android examples: `android-33`, `android-34`
       is_expand: true
       is_required: false
   - device_model: ""
     opts:
       title: "Device model"
-      summary: "The device model for iOS runs (Default: iPhone-11)"
-      description: ""
+      summary: "Device model. iOS: iPhone-11, iPhone-11-Pro, etc. Android: pixel_6, pixel_7, etc."
+      description: |
+        Device model to run your flows on.
+        - iOS examples: `iPhone-11`, `iPhone-11-Pro`
+        - Android examples: `pixel_6`, `pixel_7`
       is_expand: true
       is_required: false
   - device_locale: ""
