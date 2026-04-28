@@ -44,6 +44,9 @@ setup() {
   unset app_binary_id
   unset debug_mode
   unset upload_name
+  unset android_api_level
+  unset device_os
+  unset device_model
 }
 
 run_script() {
@@ -174,4 +177,33 @@ BAR=another'
 
   assert_success
   assert_output --partial "envman add --key MAESTRO_CLOUD_RUN_URL --value https://app.maestro.dev/project/proj_123/upload/upload_abc"
+}
+
+@test "happy path: no deprecation warning when android_api_level is unset" {
+  run_script
+
+  assert_success
+  refute_output --partial "'android_api_level' is deprecated"
+}
+
+@test "android_api_level: emits deprecation warning and still forwards --android-api-level" {
+  export android_api_level="29"
+
+  run_script
+
+  assert_success
+  assert_output --partial "WARN: 'android_api_level' is deprecated"
+  check_command_contains "--android-api-level 29"
+}
+
+@test "device_os and device_model: forwarded verbatim with no warning" {
+  export device_os="android-33"
+  export device_model="pixel_6"
+
+  run_script
+
+  assert_success
+  refute_output --partial "is deprecated"
+  check_command_contains "--device-os android-33"
+  check_command_contains "--device-model pixel_6"
 }
