@@ -194,10 +194,10 @@ inputs:
   - device_os: ""
     opts:
       title: "Device OS"
-      summary: "OS version to run on. iOS: iOS-16-2, iOS-18-2, etc. Android: android-33, android-34, etc."
+      summary: "OS version to run on. iOS: iOS-16-2, iOS-18-2, iOS-26-2 etc. Android: android-33, android-34, etc."
       description: |
         OS version to run your flows on.
-        - iOS examples: `iOS-16-2`, `iOS-17-5`, `iOS-18-2`
+        - iOS examples: `iOS-16-2`, `iOS-18-2`, `iOS-26-2`
         - Android examples: `android-33`, `android-34`
       is_expand: true
       is_required: false
