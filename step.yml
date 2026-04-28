@@ -204,10 +204,10 @@ inputs:
   - device_model: ""
     opts:
       title: "Device model"
-      summary: "Device model. iOS: iPhone-11, iPhone-11-Pro, etc. Android: pixel_6, pixel_7, etc."
+      summary: "Device model. iOS: iPhone-11, iPhone-17-Pro, etc. Android: pixel_6, pixel_7, etc."
       description: |
         Device model to run your flows on.
-        - iOS examples: `iPhone-11`, `iPhone-11-Pro`
+        - iOS examples: `iPhone-11`, `iPhone-17-Pro`
         - Android examples: `pixel_6`, `pixel_7`
       is_expand: true
       is_required: false
