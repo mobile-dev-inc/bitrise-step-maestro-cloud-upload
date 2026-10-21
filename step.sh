@@ -101,6 +101,7 @@ ${android_api_level:+--android-api-level "$android_api_level"} \
 ${device_os:+--device-os "$device_os"} \
 ${device_model:+--device-model "$device_model"} \
 ${device_locale:+--device-locale "$device_locale"} \
+${priority:+--priority "$priority"} \
 ${include_tags:+--include-tags "$include_tags"} \
 ${exclude_tags:+--exclude-tags "$exclude_tags"} \
 ${is_export:+--format "junit"} \

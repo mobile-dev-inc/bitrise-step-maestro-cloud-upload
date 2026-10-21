@@ -218,6 +218,15 @@ inputs:
       description: "A combination of lowercase ISO-639-1 code and uppercase ISO-3166-1 code should be used, e.g. de_DE for Germany. Note that this sets locale, but not location."
       is_expand: true
       is_required: false
+  - priority: ""
+    opts:
+      title: "Priority"
+      summary: "Queue priority of this upload within your organization: low, normal or high (Default: normal)"
+      description: |
+        Higher priority flows start before lower priority flows that are waiting in the queue.
+        Requires Maestro CLI 2.12.0 or later.
+      is_expand: true
+      is_required: false
   - include_tags: ""
     opts:
       title: "Include tags"
