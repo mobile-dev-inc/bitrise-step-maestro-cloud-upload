@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.10.0 - 2026-10-26
+
+- Added `priority` input to set an upload's queue priority within your organization (`low`, `normal` or `high`). Requires Maestro CLI 2.12.0 or later.
+
+## 1.9.0 - 2026-05-01
+
+- Deprecated `android_api_level` input — use `device_os` (e.g. `android-33`) instead. Setting `android_api_level` now logs a warning; the input will be removed in a future release.
+- Improved `device_os` and `device_model` docs to cover both iOS and Android, with examples
+- Added tests for the `android_api_level` deprecation behaviour
+
 ## 1.8.0 - 2026-03-18
 
 - Added outputs for the Maestro Cloud Run URL and App Binary ID
