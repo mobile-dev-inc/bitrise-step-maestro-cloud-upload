@@ -47,6 +47,7 @@ setup() {
   unset android_api_level
   unset device_os
   unset device_model
+  unset priority
 }
 
 run_script() {
@@ -206,4 +207,20 @@ BAR=another'
   refute_output --partial "is deprecated"
   check_command_contains "--device-os android-33"
   check_command_contains "--device-model pixel_6"
+}
+
+@test "priority: forwarded as --priority when set" {
+  export priority="high"
+
+  run_script
+
+  assert_success
+  check_command_contains "--priority high"
+}
+
+@test "priority: omitted when unset" {
+  run_script
+
+  assert_success
+  refute_output --partial "--priority"
 }
